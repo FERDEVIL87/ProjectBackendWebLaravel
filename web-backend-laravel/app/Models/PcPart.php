@@ -23,10 +23,5 @@ class PcPart extends Model
         'stock',
     ];
 
-    // Otomatis konversi kolom `specs` dari JSON ke array
-    protected $casts = [
-        'specs' => 'array',
-    ];
-
     public $timestamps = false; // Nonaktifkan jika tabel tidak punya created_at/updated_at
 }

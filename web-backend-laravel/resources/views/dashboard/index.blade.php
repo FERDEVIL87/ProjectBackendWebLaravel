@@ -1,31 +1,14 @@
-@extends('layouts.app')
-
-@section('title', 'Manajemen Backend')
+@extends('layouts.admin') {{-- Use the layout that already includes the navigation menu --}}
 
 @section('content')
-    <div class="header-nav">
-        <h2>Manajemen Backend Toko Komputer</h2>
-        <div>
-            <span>Halo, {{ auth()->user()->username }} ({{ auth()->user()->role }}) | </span>
-            <a href="{{ route('home') }}">Halaman Utama</a> |
-            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-                @csrf
-                <button type="submit" style="background:none;border:none;color:#00d4ff;cursor:pointer;padding:0;font-size:inherit;">Logout</button>
-            </form>
-        </div>
-    </div>
+    <h1>Manajemen Backend Toko Komputer</h1>
+    <p>Halo, {{ auth()->user()->username }} ({{ auth()->user()->role }}) | <a href="{{ route('home') }}">Halaman Utama</a> | 
+    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" style="background:none;border:none;color:#00d4ff;cursor:pointer;padding:0;font-size:inherit;">Logout</button>
+    </form>
+    </p>
 
-    <nav class="menu-nav">
-        <ul>
-            <li><a href="#">Paket Rakitan PC</a></li>
-            <li><a href="#">Laptop</a></li>
-            <li><a href="#">Console & Handheld PC</a></li>
-            <li><a href="#">PC Parts</a></li>
-            <li><a href="#">Customer Service</a></li>
-            <li><a href="#">Checkout</a></li>
-        </ul>
-    </nav>
-    
     {{-- Tampilkan daftar user --}}
     <p><a href="#" class="btn">Tambah User Baru</a></p>
     @if($users->count() > 0)

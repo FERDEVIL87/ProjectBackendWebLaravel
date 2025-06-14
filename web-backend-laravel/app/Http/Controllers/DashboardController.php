@@ -10,6 +10,6 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::latest()->get();
-        return view('dashboard.index', compact('users'));
+        return view('dashboard.index', compact('users')); 
     }
 }

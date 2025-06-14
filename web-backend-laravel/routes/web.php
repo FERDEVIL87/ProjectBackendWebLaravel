@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PcPartController;
 // ... controller lain
 
 // GANTI BLOK INI
@@ -30,5 +31,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Rute yang dilindungi (harus login)
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // ... rute lain yang memerlukan login
+
+    // Daftarkan semua rute untuk PC Parts
+    Route::resource('pc-parts', PcPartController::class);
+
+    // Anda bisa menambahkan resource controller lain di sini nanti
+    // Route::resource('laptops', LaptopController::class);
+    // Route::resource('pc-rakitan', PcRakitanController::class);
 });

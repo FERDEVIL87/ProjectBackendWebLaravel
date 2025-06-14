@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         // Schema::create akan membuat query "CREATE TABLE pc_parts (...)" di MySQL
@@ -15,12 +18,21 @@ return new class extends Migration
             $table->string('brand', 100);
             $table->string('category', 100);
             $table->text('image')->nullable(); // text untuk URL yang mungkin panjang
-            $table->json('specs')->nullable(); // Tipe data JSON, sangat berguna
+            
+            // ==========================================================
+            // PERUBAHAN DI SINI: json() diubah menjadi longText()
+            // ==========================================================
+            $table->longText('specs')->nullable();
+            // ==========================================================
+            
             $table->integer('stock')->default(0);
             // Kita tidak menambahkan timestamps() jika tabel aslinya tidak punya created_at/updated_at
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('pc_parts');
