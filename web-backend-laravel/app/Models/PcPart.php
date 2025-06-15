@@ -23,5 +23,12 @@ class PcPart extends Model
         'stock',
     ];
 
+    /**
+     * Aktifkan kembali casting untuk 'specs'.
+     */
+    protected $casts = [
+        'specs' => 'array',
+    ];
+    
     public $timestamps = false; // Nonaktifkan jika tabel tidak punya created_at/updated_at
 }

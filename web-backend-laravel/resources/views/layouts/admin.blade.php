@@ -23,11 +23,11 @@
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li> {{-- Menu to return to the dashboard --}}
                 <li><a href="#">Paket Rakitan PC</a></li>
-                <li><a href="#">Laptop</a></li>
-                <li><a href="#">Console & Handheld PC</a></li>
+                <li><a href="{{ route('laptops.index') }}">Laptop</a></li>
+                <li><a href="{{ route('console-and-handhelds.index') }}">Console & Handheld PC</a></li>
                 <li><a href="{{ route('pc-parts.index') }}">PC Parts</a></li>
-                <li><a href="#">Customer Service</a></li>
-                <li><a href="#">Checkout</a></li>
+                <li><a href="{{ route('customer-service.index') }}">Customer Service</a></li>
+                <li><a href="{{ route('checkouts.index') }}">Pesanan Masuk</a></li>
             </ul>
         </nav>
 

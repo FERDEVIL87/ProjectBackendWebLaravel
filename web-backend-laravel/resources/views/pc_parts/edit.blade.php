@@ -20,21 +20,25 @@
         @csrf
         @method('PUT') {{-- Method spoofing untuk request UPDATE --}}
 
-        {{-- Isi semua field dengan data yang ada dari $pcPart --}}
+        {{-- Field: Name --}}
         <div class="mb-3">
             <label for="name" class="form-label">Nama PC Part</label>
             <input name="name" id="name" type="text" class="form-control" value="{{ old('name', $pcPart->name) }}" required>
         </div>
+
+        {{-- Field: Price --}}
         <div class="mb-3">
             <label for="price" class="form-label">Harga</label>
             <input name="price" id="price" type="number" class="form-control" value="{{ old('price', $pcPart->price) }}" required min="0">
         </div>
+
+        {{-- Field: Brand --}}
         <div class="mb-3">
             <label for="brand" class="form-label">Brand</label>
             <input name="brand" id="brand" type="text" class="form-control" value="{{ old('brand', $pcPart->brand) }}" required>
         </div>
         
-        {{-- Menggunakan dropdown untuk kategori agar konsisten --}}
+        {{-- Dropdown for Category --}}
         <div class="mb-3">
             <label for="category" class="form-label">Kategori</label>
             <select name="category" id="category" class="form-control" required>
@@ -61,22 +65,21 @@
             </select>
         </div>
         
+        {{-- Field: Image (URL) --}}
         <div class="mb-3">
             <label for="image" class="form-label">Gambar (URL)</label>
             <input name="image" id="image" type="text" class="form-control" value="{{ old('image', $pcPart->image) }}">
         </div>
 
-        {{-- ========================================================== --}}
         {{-- BLOK SPECS YANG SUDAH DIGANTI --}}
-        {{-- ========================================================== --}}
         <div class="mb-3">
-            <label for="specs" class="form-label">Spesifikasi / Deskripsi</label>
-            {{-- Langsung tampilkan nilai string dari database --}}
-            <textarea name="specs" id="specs" class="form-control" rows="4">{{ old('specs', $pcPart->specs) }}</textarea>
-            <small class="form-text text-muted">Masukkan detail spesifikasi atau deskripsi produk di sini.</small>
+            <label for="specs" class="form-label">Spesifikasi (Satu per Baris)</label>
+            {{-- Ubah array specs menjadi string dengan join() --}}
+            <textarea name="specs" id="specs" class="form-control" rows="4">{{ old('specs', is_array($pcPart->specs) ? implode("\n", $pcPart->specs) : '') }}</textarea>
+            <small class="form-text text-muted">Setiap baris akan menjadi satu poin spesifikasi.</small>
         </div>
-        {{-- ========================================================== --}}
-
+        
+        {{-- Field: Stock --}}
         <div class="mb-3">
             <label for="stock" class="form-label">Stok</label>
             <input name="stock" id="stock" type="number" class="form-control" value="{{ old('stock', $pcPart->stock) }}" required min="0">

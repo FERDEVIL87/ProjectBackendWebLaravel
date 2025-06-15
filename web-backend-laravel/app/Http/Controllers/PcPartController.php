@@ -34,7 +34,7 @@ class PcPartController extends Controller
     public function store(Request $request)
     {
         // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'brand' => 'required|string|max:100',
@@ -44,16 +44,13 @@ class PcPartController extends Controller
             'stock' => 'required|integer|min:0',
         ]);
 
+        // LOGIKA BARU: Ubah string specs per baris menjadi array
+        if (!empty($validated['specs'])) {
+            $validated['specs'] = array_filter(array_map('trim', explode("\n", $validated['specs'])));
+        }
+
         // Simpan ke database menggunakan Model
-        PcPart::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'brand' => $request->brand,
-            'category' => $request->category,
-            'image' => $request->image,
-            'specs' => $request->specs, // PERUBAHAN: Langsung simpan sebagai teks biasa
-            'stock' => $request->stock,
-        ]);
+        PcPart::create($validated);
 
         // Arahkan kembali ke halaman daftar dengan pesan sukses
         return redirect()->route('pc-parts.index')->with('success', 'Data PC Part berhasil ditambahkan!');
@@ -74,7 +71,7 @@ class PcPartController extends Controller
     public function update(Request $request, PcPart $pcPart)
     {
         // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'brand' => 'required|string|max:100',
@@ -84,16 +81,15 @@ class PcPartController extends Controller
             'stock' => 'required|integer|min:0',
         ]);
 
+        // LOGIKA BARU: Ubah string specs per baris menjadi array
+        if (!empty($validated['specs'])) {
+            $validated['specs'] = array_filter(array_map('trim', explode("\n", $validated['specs'])));
+        } else {
+            $validated['specs'] = []; // Pastikan specs adalah array kosong jika inputnya kosong
+        }
+
         // Update data pada model yang ditemukan
-        $pcPart->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'brand' => $request->brand,
-            'category' => $request->category,
-            'image' => $request->image,
-            'specs' => $request->specs, // PERUBAHAN: Langsung simpan sebagai teks biasa
-            'stock' => $request->stock,
-        ]);
+        $pcPart->update($validated);
 
         // Arahkan kembali ke halaman daftar dengan pesan sukses
         return redirect()->route('pc-parts.index')->with('success', 'Data PC Part berhasil diperbarui!');

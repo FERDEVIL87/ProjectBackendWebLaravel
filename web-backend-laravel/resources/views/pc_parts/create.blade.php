@@ -74,12 +74,12 @@
         </div>
 
         {{-- ========================================================== --}}
-        {{-- BLOK SPECS YANG SUDAH DIGANTI --}}
+        {{-- BLOK SPECS YANG DIGANTI --}}
         {{-- ========================================================== --}}
         <div class="mb-3">
-            <label for="specs" class="form-label">Spesifikasi / Deskripsi</label>
+            <label for="specs" class="form-label">Spesifikasi (Satu per Baris)</label>
             <textarea name="specs" id="specs" class="form-control" rows="4">{{ old('specs') }}</textarea>
-            <small class="form-text text-muted">Masukkan detail spesifikasi atau deskripsi produk di sini.</small>
+            <small class="form-text text-muted">Setiap baris akan menjadi satu poin spesifikasi.</small>
         </div>
         {{-- ========================================================== --}}
         

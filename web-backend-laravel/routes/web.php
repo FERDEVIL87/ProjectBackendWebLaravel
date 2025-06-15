@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PcPartController;
-// ... controller lain
+use App\Http\Controllers\CheckoutController; // <-- Added use statement
+use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\ConsoleAndHandheldController;
+use App\Http\Controllers\LaptopController;
 
 // GANTI BLOK INI
 // Route::get('/', function () {
@@ -31,11 +34,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Rute yang dilindungi (harus login)
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    // Daftarkan semua rute untuk PC Parts
     Route::resource('pc-parts', PcPartController::class);
-
-    // Anda bisa menambahkan resource controller lain di sini nanti
-    // Route::resource('laptops', LaptopController::class);
-    // Route::resource('pc-rakitan', PcRakitanController::class);
+    Route::get('/checkouts', [CheckoutController::class, 'index'])->name('checkouts.index');
+    Route::delete('/checkouts/{transaction_id}', [CheckoutController::class, 'destroy'])->name('checkouts.destroy');
+    Route::get('/customer-service', [CustomerServiceController::class, 'index'])->name('customer-service.index');
+    Route::resource('console-and-handhelds', ConsoleAndHandheldController::class);
+    Route::resource('laptops', LaptopController::class);
 });

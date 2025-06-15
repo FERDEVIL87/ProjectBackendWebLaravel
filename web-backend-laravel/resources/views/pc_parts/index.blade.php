@@ -20,6 +20,7 @@
                     <th>Harga</th>
                     <th>Brand</th>
                     <th>Kategori</th>
+                    <th>Spesifikasi</th>  {{-- New header for specs --}}
                     <th>Gambar</th>
                     <th>Stok</th>
                     <th>Aksi</th>
@@ -33,6 +34,18 @@
                         <td>Rp {{ number_format($part->price, 0, ',', '.') }}</td>
                         <td>{{ $part->brand }}</td>
                         <td>{{ $part->category }}</td>
+                        {{-- Ganti bagian <td> untuk specs --}}
+                        <td>
+                            @if(!empty($part->specs))
+                                <ul>
+                                    @foreach($part->specs as $spec)
+                                        <li>{{ $spec }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td><img src="{{ $part->image }}" alt="{{ $part->name }}" style="max-width:80px;"></td>
                         <td>{{ $part->stock }}</td>
                         <td>
@@ -46,7 +59,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">Belum ada data PC Part.</td>
+                        <td colspan="9" class="text-center">Belum ada data PC Part.</td>
                     </tr>
                 @endforelse
             </tbody>

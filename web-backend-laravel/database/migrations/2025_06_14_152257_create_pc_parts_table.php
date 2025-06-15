@@ -22,7 +22,7 @@ return new class extends Migration
             // ==========================================================
             // PERUBAHAN DI SINI: json() diubah menjadi longText()
             // ==========================================================
-            $table->longText('specs')->nullable();
+            $table->json('specs')->nullable();
             // ==========================================================
             
             $table->integer('stock')->default(0);
