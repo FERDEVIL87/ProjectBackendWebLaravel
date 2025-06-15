@@ -11,6 +11,7 @@ use App\Http\Controllers\LaptopController;
 use App\Http\Controllers\TechNewsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PcRakitanController;
+use App\Http\Controllers\UserController;
 
 // GANTI BLOK INI
 // Route::get('/', function () {
@@ -46,4 +47,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('tech-news', TechNewsController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('pc-rakitans', PcRakitanController::class);
+
+    Route::resource('users', UserController::class)->except(['index', 'show']);
 });
