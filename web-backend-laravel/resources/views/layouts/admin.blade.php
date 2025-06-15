@@ -22,7 +22,9 @@
         <nav class="menu-nav">
             <ul>
                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li> {{-- Menu to return to the dashboard --}}
-                <li><a href="#">Paket Rakitan PC</a></li>
+                <li><a href="{{ route('banners.index') }}">Manajemen Banner</a></li>
+                <li><a href="{{ route('tech-news.index') }}">Tech News</a></li>
+                <li><a href="{{ route('pc-rakitans.index') }}">Paket Rakitan</a></li>
                 <li><a href="{{ route('laptops.index') }}">Laptop</a></li>
                 <li><a href="{{ route('console-and-handhelds.index') }}">Console & Handheld PC</a></li>
                 <li><a href="{{ route('pc-parts.index') }}">PC Parts</a></li>

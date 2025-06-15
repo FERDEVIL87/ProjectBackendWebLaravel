@@ -8,6 +8,9 @@ use App\Http\Controllers\CheckoutController; // <-- Added use statement
 use App\Http\Controllers\CustomerServiceController;
 use App\Http\Controllers\ConsoleAndHandheldController;
 use App\Http\Controllers\LaptopController;
+use App\Http\Controllers\TechNewsController;
+use App\Http\Controllers\BannerController;
+use App\Http\Controllers\PcRakitanController;
 
 // GANTI BLOK INI
 // Route::get('/', function () {
@@ -40,4 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer-service', [CustomerServiceController::class, 'index'])->name('customer-service.index');
     Route::resource('console-and-handhelds', ConsoleAndHandheldController::class);
     Route::resource('laptops', LaptopController::class);
+    Route::resource('tech-news', TechNewsController::class);
+    Route::resource('banners', BannerController::class);
+    Route::resource('pc-rakitans', PcRakitanController::class);
 });
